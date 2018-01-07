@@ -61,8 +61,10 @@ public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCal
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
 
-        getDeviceLocationAndSetOnMap();
-
+        if ( mLocationPermissionGranted )
+        {
+            getDeviceLocationAndSetOnMap();
+        }
     }
 
 
@@ -81,6 +83,7 @@ public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCal
             case PERMISSION_REQUEST_ACCESS_FINE_LOCATION: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mLocationPermissionGranted = true;
+                    getDeviceLocationAndSetOnMap();
                 }
             }
         }
