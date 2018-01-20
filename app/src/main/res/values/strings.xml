@@ -5,4 +5,10 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="title_activity_first_maps">Map</string>
+
+    // map strings
+
+    <string name="way_id_hint">Enter Way ID here...</string>
+    <string name="way_id_button">Add Way</string>
+    <string name="way_id_list_title">Active Ways</string>
 </resources>

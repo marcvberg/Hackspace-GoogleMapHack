@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,9 +22,17 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    private boolean mDatReady = false;
+
+    private HashMap<String, String[]> mNodeDat;
+    private HashMap<String, List<String>> mWayDat;
 
     //My vars
     private static final int PERMISSION_REQUEST_ACCESS_FINE_LOCATION = 100;
@@ -40,6 +49,16 @@ public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
 
         getLocationPermission();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                TestProcess tp = new TestProcess();
+                mNodeDat = tp.GetNodes();
+                mWayDat = tp.GetWays();
+                mDatReady = true;
+            }
+        }).start();
     }
 
 
@@ -118,5 +137,20 @@ public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCal
         LatLng newLoc = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(newLoc).title("My Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(newLoc));
+    }
+
+    public void AddWay(android.view.View v){
+
+        if (mDatReady){
+            EditText et = findViewById(R.id.WayID);
+
+            List<String> nodes = mWayDat.get(et.toString());
+
+            for(int i = 0; i < nodes.size(); i++){
+                String[] coord = mNodeDat.get(nodes.get(i));
+                LatLng newLoc = new LatLng(Long.parseLong(coord[0]), Long.parseLong(coord[1]));
+                mMap.addMarker(new MarkerOptions().position(newLoc).title("node"));
+            }
+        }
     }
 }

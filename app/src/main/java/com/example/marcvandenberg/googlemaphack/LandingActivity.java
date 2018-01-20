@@ -99,16 +99,16 @@ public class LandingActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        mContentView = findViewById(R.id.fullscreen_switch);
 
 
         // Set up the user interaction to manually show or hide the system UI.
-        /*mContentView.setOnClickListener(new View.OnClickListener() {
+        mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });*/
+        });
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
@@ -175,6 +175,7 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     public void GoProc(android.view.View v){
-
+        Intent inten = new Intent(this, ProcessingTestActivity.class);
+        startActivity(inten);
     }
 }

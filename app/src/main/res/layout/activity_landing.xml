@@ -16,6 +16,13 @@
         android:background="@color/black"
         android:src="@mipmap/droplets"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/fullscreen_switch">
+
+    </View>
+
     <!-- This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows. -->
     <FrameLayout
