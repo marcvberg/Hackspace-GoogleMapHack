@@ -1,11 +1,14 @@
 package com.example.marcvandenberg.googlemaphack;
 
 import android.content.res.AssetManager;
+import android.util.Xml;
 
 import java.io.*;
 import java.util.*;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
 
 /**
  * Created by marcvandenberg on 1/12/18.
@@ -22,8 +25,15 @@ public class TestProcess {
     public TestProcess(){
         try {
             InputStream is = getClass().getResourceAsStream("map.xml");
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(is);
+
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, null);
+            parser.nextTag();
+
+
+
+
             /*
             Element root = document.getRootElement();
 
@@ -46,13 +56,17 @@ public class TestProcess {
             }*/
 
         }
-        catch(IOException e){
+        catch(XmlPullParserException e){
             e.printStackTrace();
         }
-        catch (org.jdom2.JDOMException e){
+        catch (IOException e){
             e.printStackTrace();
         }
 
+
+    }
+
+    private void ReadFeed(XmlPullParser parser){
 
     }
 
