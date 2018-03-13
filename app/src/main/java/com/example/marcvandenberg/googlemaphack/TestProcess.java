@@ -1,11 +1,23 @@
 package com.example.marcvandenberg.googlemaphack;
 
+import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.XmlResourceParser;
+import android.util.Xml;
 
 import java.io.*;
 import java.util.*;
 import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by marcvandenberg on 1/12/18.
@@ -19,13 +31,30 @@ public class TestProcess {
 
     public String mVal = "";
 
-    public TestProcess(){
+    public TestProcess(InputStream is){
         try {
-            InputStream is = getClass().getResourceAsStream("map.xml");
-            SAXBuilder saxBuilder = new SAXBuilder();
-            Document document = saxBuilder.build(is);
-            /*
-            Element root = document.getRootElement();
+
+            XmlPullParser xpp = Xml.newPullParser();
+            xpp.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            xpp.setInput(is, null);
+            xpp.nextTag();
+
+            xpp.require(XmlPullParser.START_TAG, null, "feed");
+
+            List entries = new ArrayList();
+
+            while (xpp.next() != XmlPullParser.END_TAG) {
+                if (xpp.getEventType() != XmlPullParser.START_TAG){
+                    continue;
+                }
+
+                String name = xpp.getName();
+                if (name.equals("way") || name.equals("node")){
+                    entries.add(readEntry(xpp));
+                }
+            }
+
+            /*Element root = document.getRootElement();
 
             List<Element> nodes = root.getChildren("node");
             List<Element> ways = root.getChildren("way");
@@ -44,17 +73,21 @@ public class TestProcess {
 
                 mWayDat.put(ways.get(i).getAttributeValue("id"), refs);
             }*/
-
+            is.close();
         }
         catch(IOException e){
             e.printStackTrace();
         }
-        catch (org.jdom2.JDOMException e){
+        catch (XmlPullParserException e) {
             e.printStackTrace();
+        }
+        finally{
         }
 
 
     }
+
+    private
 
     public HashMap<String, List<String>> GetWays(){
         return mWayDat;
