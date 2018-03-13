@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.location.FusedLocationProviderClient;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -53,10 +55,18 @@ public class FirstMapsActivity extends FragmentActivity implements OnMapReadyCal
         new Thread(new Runnable() {
             @Override
             public void run() {
-                TestProcess tp = new TestProcess();
-                mNodeDat = tp.GetNodes();
-                mWayDat = tp.GetWays();
-                mDatReady = true;
+                try {
+                    TestProcess tp = new TestProcess(getAssets().open("test.xml"));
+                    mNodeDat = tp.GetNodes();
+                    mWayDat = tp.GetWays();
+                    mDatReady = true;
+
+                    TextView tv = findViewById(R.id.wayOutput);
+                    tv.setText(tp.mVal);
+                }
+                catch(IOException e){
+                    e.printStackTrace();
+                }
             }
         }).start();
     }

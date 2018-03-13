@@ -1,6 +1,8 @@
 package com.example.marcvandenberg.googlemaphack;
 
+import android.content.Context;
 import android.content.res.AssetManager;
+import android.content.res.XmlResourceParser;
 import android.util.Xml;
 
 import java.io.*;
@@ -9,6 +11,13 @@ import org.jdom2.*;
 import org.jdom2.input.SAXBuilder;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 /**
  * Created by marcvandenberg on 1/12/18.
@@ -22,8 +31,9 @@ public class TestProcess {
 
     public String mVal = "";
 
-    public TestProcess(){
+    public TestProcess(InputStream is){
         try {
+			
             InputStream is = getClass().getResourceAsStream("map.xml");
 
             XmlPullParser parser = Xml.newPullParser();
@@ -31,11 +41,7 @@ public class TestProcess {
             parser.setInput(is, null);
             parser.nextTag();
 
-
-
-
-            /*
-            Element root = document.getRootElement();
+            /*Element root = document.getRootElement();
 
             List<Element> nodes = root.getChildren("node");
             List<Element> ways = root.getChildren("way");
@@ -54,13 +60,15 @@ public class TestProcess {
 
                 mWayDat.put(ways.get(i).getAttributeValue("id"), refs);
             }*/
-
+            is.close();
         }
         catch(XmlPullParserException e){
             e.printStackTrace();
         }
         catch (IOException e){
             e.printStackTrace();
+        }
+        finally{
         }
 
 
