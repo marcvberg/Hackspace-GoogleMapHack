@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="Overpass API 0.7.54.12 054bb0bb">
+    <note>The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.</note>
+    <meta osm_base="2018-01-10T18:00:02Z"/>
+    <node id="1202570851" lat="42.7254717" lon="-84.4882375" version="1" timestamp="2011-03-15T03:07:22Z" changeset="7562983" uid="326013" user="polet82"/>
+    <node id="3834405568" lat="42.7251329" lon="-84.4881953" version="1" timestamp="2015-11-13T14:59:49Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405569" lat="42.7251014" lon="-84.4882784" version="1" timestamp="2015-11-13T14:59:49Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405570" lat="42.7250325" lon="-84.4883213" version="1" timestamp="2015-11-13T14:59:49Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405571" lat="42.7249418" lon="-84.4883321" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405572" lat="42.7248729" lon="-84.4882892" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405573" lat="42.7248453" lon="-84.4882248" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405574" lat="42.7248354" lon="-84.4881443" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405575" lat="42.7248394" lon="-84.4880960" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405576" lat="42.7248421" lon="-84.4880455" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <node id="3834405577" lat="42.7248634" lon="-84.4878428" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004"/>
+    <way id="380094167" version="1" timestamp="2015-11-13T14:59:50Z" changeset="35285970" uid="3371466" user="RB1004">
+        <nd ref="1202570851"/>
+        <nd ref="3834405568"/>
+        <nd ref="3834405569"/>
+        <nd ref="3834405570"/>
+        <nd ref="3834405571"/>
+        <nd ref="3834405572"/>
+        <nd ref="3834405573"/>
+        <nd ref="3834405574"/>
+        <nd ref="3834405575"/>
+        <nd ref="3834405576"/>
+        <nd ref="3834405577"/>
+        <tag k="highway" v="footway"/>
+    </way>
+</osm>
